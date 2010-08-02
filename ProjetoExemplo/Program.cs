@@ -39,7 +39,7 @@ namespace ProjetoExemplo
         static void Main(string[] args)
         {
             IKernel kernel = new StandardKernel();
-            ILogger logger = kernel.Get<DatabaseLogger>("teste");
+            ILogger logger = kernel.Get<DatabaseLogger>();
             logger.Write("teste");
             Console.Read();
         }
