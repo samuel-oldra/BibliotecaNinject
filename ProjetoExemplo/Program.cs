@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
+﻿using Ninject;
+using System;
 
 namespace ProjetoExemplo
 {
@@ -30,17 +27,24 @@ namespace ProjetoExemplo
         public void Write(string message)
         {
             Console.WriteLine(String.Format("Message: {0}", message));
-            Console.WriteLine("Target: Database");
+            Console.WriteLine("Target: DatabaseLogger");
         }
     }
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             IKernel kernel = new StandardKernel();
-            ILogger logger = kernel.Get<DatabaseLogger>();
-            logger.Write("teste");
+
+            ILogger logger_d = kernel.Get<DatabaseLogger>();
+            logger_d.Write("Teste Write DatabaseLogger");
+
+            Console.WriteLine();
+
+            ILogger logger_c = kernel.Get<ConsoleLogger>();
+            logger_c.Write("Teste Write ConsoleLogger");
+
             Console.Read();
         }
     }
